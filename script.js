@@ -143,6 +143,7 @@ const game = {
     team2: 6.5,
   },
 };
+/*
 // 1.
 console.log(game.scored); //Use .entries() to have index and player
 
@@ -163,4 +164,69 @@ console.log(average);
 for (const [team, odd] of Object.entries(game.odds)) {
   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
   console.log(`Odd of ${teamStr}: ${odd}`);
+}
+*/
+
+/*
+// Maps - Data structure that we can use to map values to keys
+// In maps, the keys can have any type (in objects they are always strings)
+const rest = new Map(); // Create an empty map and then fill it with the .set method
+rest.set('name', 'Classico italiano');
+rest.set(1, 'Firenze, Italy'); //Possiamo inserire qualsiasi tipo, qui numero
+rest.set(2, 'Lisbona, Portugal');
+console.log(rest);
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open!')
+  .set(false, 'We are closed!');
+
+console.log(rest.get('name')); //To read data from the map we use the .GET method
+console.log(rest.get(true));
+
+const time = 8;
+rest.get(
+  time > rest.get('open') && time < rest.get('close') // Check se time è nell'intervallo di tempo in cui il ristorante è aperto
+    ? console.log(rest.get(true)) // se lo è, messaggio true
+    : console.log(rest.get(false)) // se non lo è, messaggio false
+);
+
+console.log(rest.has('categories')); // .HAS method to check if there is the propoerty --> Boolean
+rest.delete(2); // delete elements from the map con .DELETE method
+console.log(rest);
+console.log(rest.size); //.SIZE method
+//rest.clear(); // .CLEAR method per cancellare
+rest.set([1, 2], 'Test'); // usare un Array come key
+console.log(rest.get([1, 2])); // non funziona --> undefined (non è lo stesso elemento nell'Heap)
+
+const arr = [3, 4]; // per usare un Array va inserita come variabile!
+rest.set(arr, 'Test 2');
+console.log(rest.get(arr));
+
+rest.set(document.querySelector('h1'), 'Heading'); // possiamo selezionare gli object della pagina
+console.log(rest);
+*/
+
+// Other way to populate a Map
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'], //first key
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'javaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again'],
+]);
+console.log(question);
+console.log(Object.entries(restaurant.openingHours));
+
+// Convert object to map
+const hoursMap = new Map(Object.entries(restaurant.openingHours));
+console.log(hoursMap);
+
+// Iteration on Maps
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 }
