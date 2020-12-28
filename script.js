@@ -209,6 +209,7 @@ rest.set(document.querySelector('h1'), 'Heading'); // possiamo selezionare gli o
 console.log(rest);
 */
 
+/*
 // Other way to populate a Map
 const question = new Map([
   ['question', 'What is the best programming language in the world?'], //first key
@@ -227,6 +228,110 @@ const hoursMap = new Map(Object.entries(restaurant.openingHours));
 console.log(hoursMap);
 
 // Iteration on Maps
+console.log(question.get('question'));
 for (const [key, value] of question) {
   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+const answer = 3; // Number(prompt('Your answer? (1, 2 or 3)'));
+console.log(answer);
+
+question.get('correct') === answer
+  ? console.log(question.get(true))
+  : console.log(question.get(false));
+
+console.log(question.get(question.get('correct') === answer)); // altro modo
+
+// Convert Map to Array
+console.log([...question]);
+*/
+
+/*  WHICH DATA STRUCTURE TO USE?
+Sources of data:
+1. from the program itself;
+2. from the UI (User Interface);
+3. from external sources (e.g. web API / Application Programming Interface)
+
+A) Do we need a simple list of values? ---> we use an array or a Set
+B) Do we need key value pairs? ---> we need an object or a Map (we describe a value using the key)
+
+data coming from web API comes inthe form of a JSON file. It is a long string that can be converted in an Object. It is enough to use an Array
+
+ARRAYS:  tasks = ['Code', 'Eat', 'Code']
+- use when you need ORDERED list of values (might contain duplicates)
+- use when you need to MANIPULATE data
+
+SETS:  tasks = new Set([['Code', 'Eat', 'Code']])
+- use when you need to work with UNIQUE values
+- use then HIGH-PERFORMANCE is really important
+- use to REMOVE DUPLICATES from array
+
+OBJECTS: task = {
+  task: 'Code',
+  date: 'today',
+  repeat: true
+}
+- more "traditional" key/value store;
+- easier to write and access values with . and [];
+- use when you need to include FUNCTIONS (methods);
+- use when working with JSON (can convert to map)
+
+MAPS: task = new Map([
+  ['task', 'Code'],
+  ['date', 'today'],
+  [false, 'Start coding']
+])
+- better performance;
+- keys can have ANY data type;
+- easy to iterate;
+- easy to compute size;
+- use when you simply need to map key to values;
+- use when you need keys that are NOT strings
+
+*/
+
+///////////////////////////////////////
+// Coding Challenge #3
+9;
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1.
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2.
+gameEvents.delete(64);
+
+// 3.
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+
+// 4.
+for (const [min, event] of gameEvents) {
+  let half = min < 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
 }
